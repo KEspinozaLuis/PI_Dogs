@@ -1,0 +1,85 @@
+.contentForm{
+    margin: 0 0 1rem;
+}
+.contentFlex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form{
+    width: 40vw;
+    margin: 2rem auto 4rem;
+}
+
+.titleForm{
+    margin: 2rem 0 1rem
+}
+
+.label{
+    font-size: 0.9rem;
+    color: #848383;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.inputForm, 
+.selectForm{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 45%;
+}
+
+.containerTemp{
+    border: 1px solid #ccc;
+    padding: 1rem 1rem 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.titleTemperaments{
+    color: #848383;
+    font-size: 0.9rem;
+}
+
+.listTemperament{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 10px;
+}
+
+.close {
+    margin-left: 8px;
+}
+.close svg{
+    fill: #cc1016;
+    font-size: 0.8rem;
+}
+
+.btn{
+    padding: 0.5rem 1.5rem;
+    background: #08ba8f;
+    border: 1px solid #08ba8f ;
+    color: #fff;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    width: 45%;
+}
+
+.btn:disabled{
+    background: rgb(194, 33, 33);
+    border: 1px solid rgb(194, 33, 33) ;
+    cursor: not-allowed;
+}
+
+.error{
+    display: block;
+    font-size: 0.75rem;
+    color: rgb(194, 33, 33);
+    margin-top: 10px;
+}

@@ -1,0 +1,47 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: rgba(0,0,0,0.2);
+}
+
+.content{
+    max-width: 400px;
+    text-align: center;
+}
+
+.btnStart{
+    background-color: rgba(0,0,0);
+    color: #fff;
+    font-weight: 600;
+    padding: 0.8rem;
+    display: inline-block;
+    margin: 1rem 0 2rem;
+    cursor: pointer;
+    transition: .2s all;
+}
+
+.btnStart:hover{
+    background-color: #fff;
+    color: #000;
+}
+
+.contactInfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contactName{
+    padding-right: 0.5rem;
+    border-right: 1px solid #000;
+    margin-right: 0.5rem;
+}
+
+.contact{
+    color: #000;
+    margin: 0.25rem 0.25rem 0;
+    display: inline-block;
+    cursor: pointer;
+}

@@ -1,0 +1,11 @@
+.cardDog{
+    border: 1px solid #000;
+    padding: 1rem;
+}
+.imgDog{
+    max-width: 200px;
+}
+
+.infoDog{
+    font-size: 1rem;
+}

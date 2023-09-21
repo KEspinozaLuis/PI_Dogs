@@ -1,0 +1,33 @@
+.containerPagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0 2rem;
+}
+
+.listPage{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.btn{
+    color: #555;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+.page{
+    width: 34px;
+}
+
+.active{
+    background-color: aqua;
+}
+
+.btn[disabled]{
+    cursor: pointer;
+    background-color: #f2f2f2;
+    color: #ccc;
+}

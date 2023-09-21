@@ -6,6 +6,7 @@ const { URL_API, API_KEY } = process.env;
 const addTemperaments =  async () => {
     const {data} = await axios(`${URL_API}/?api_key=${API_KEY}`);
     const allTemperaments = data.map(dog => dog.temperament);
+    
     allTemperaments.forEach(temperament=>{
         if(temperament){
             let temperamtsArr = temperament.split(',');

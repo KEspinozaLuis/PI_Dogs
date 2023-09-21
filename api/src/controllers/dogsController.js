@@ -4,21 +4,32 @@ const { URL_API, API_KEY } = process.env;
 
 const {Dog, Temperament} = require('../db');
 
-//Obtener todas las razas de los perros desde la API y BD
-const getDogs = async()=>{
+//Obtener todas las razas de los perros desde la API
+const getDogsApi = async()=>{
     //Listado de perros de la API
     const {data} = await axios(`${URL_API}/?api_key=${API_KEY}`);
     const dogsApi = data.map(dog =>{
+        let [minWeight, maxWeight] = dog.weight.metric.split("-")
+        let [minHeight, maxHeight] = dog.height.metric.split("-")
+        // let temperamentArr = dog.temperament ? dog.temperament.split(', '): "";
+
         return {
             id: dog.id,
             name: dog.name,
-            weight: dog.weight.metric,
-            height: dog.height.metric,
+            minHeight: Number(minHeight),
+            maxHeigh: Number(maxHeight),
+            minWeight: Number(minWeight),
+            maxWeight: Number(maxWeight),
             life_span: dog.life_span,
-            temperament: dog.temperament,
+            temperaments: dog.temperament,
             image: dog.image.url
         }
     });
+
+    return dogsApi;
+}
+//Obtener todas las razas de los perros desde la  BD
+const getDogsBd = async ()=>{
     //Listado de perros de la BD
     const dogsBD = await Dog.findAll({
         include: {
@@ -29,52 +40,77 @@ const getDogs = async()=>{
             }
         }
     });
-    // Unimos los perros de la api + perros de BD
-    const allDogs = [...dogsApi, ...dogsBD];
-    return allDogs;
+
+    const dogsBdFormat = dogsBD.map(dog =>{
+        return {
+            id: dog.id,
+            name: dog.name,
+            minHeight: dog.minHeight,
+            maxHeight: dog.maxHeight,
+            minWeight: dog.minWeight,
+            maxWeight: dog.maxWeight,
+            life_span: dog.life_span,
+            temperaments: (dog.Temperaments.map(temp => temp.name)).join(', '),
+            image: dog.image
+        }
+    })
+    return dogsBdFormat;
 }
+
+//Unimos todos los perros de la Api y BD
+const getAllDogs = async()=>{
+    const dogsApi = await getDogsApi(); 
+    const dogsBd = await getDogsBd();
+    return [...dogsBd, ...dogsApi ]
+}
+
 //Buscar por nombre
 const searchDogName = async (name)=>{
-    const allDogs = await getDogs();
+    const allDogs = await getAllDogs();
     const searchDog = allDogs.filter(dog => dog.name.toLowerCase().includes(name.toLowerCase()));
     if(searchDog.length === 0) throw new Error('No existe el perro');
     return searchDog;
 }
 
 //Obtener detalle de un perro por ID
-const getDogById = async (id, source)=>{
-    const {data} = await axios(`${URL_API}/${id}/?api_key=${API_KEY}`);
-    const dog = 
-        source === 'api' 
-        ? data
-        : await Dog.findByPk(id)
+const getDogById = async (id)=>{
+    
+    const allDogs = await getAllDogs();
+    const dog = allDogs.find((d) => d.id.toString() === id.toString())
     
     //Si en caso no existe el ID
-    if(!dog || Object.keys(dog).length === 0) throw new Error(`No existe el perro con id: ${id}`);
-    return dog;
+    if(!dog) throw new Error(`No existe el perro con id: ${id}`);
+    return dog; 
 }
 
 
 //Crear un perro
 const addDog = async (data)=>{
-    const {name, height, weight, life_span, image, temperaments} = data;
-    if(!name || !height || !weight || !life_span || !image || !temperaments) throw new Error('Faltan datos');
+    const {name, minHeight, maxHeight, minWeight, maxWeight, life_span, image, temperaments} = data;
+    if(!name || !minHeight || !maxHeight || !minWeight || !maxWeight || !life_span || !image || !temperaments) throw new Error('Faltan datos');
     if(temperaments.length === 0) throw new Error('Agrega por lo menos 1 temperamento');
     const newDog ={
         name, 
-        height, 
-        weight, 
+        minHeight,
+        maxHeight, 
+        minWeight,
+        maxWeight,
         life_span, 
         image
     };
     const addNewDog = await Dog.create(newDog);
-    await addNewDog.addTemperament(temperaments);
+    temperaments.forEach(async (temp) => {
+        let temperamentsDB = await Temperament.findAll({
+            where: { name : temp}
+        })
+        await addNewDog.addTemperament(temperamentsDB);
+    });
 
     return addNewDog;
 }
 
 module.exports = {
-    getDogs,
+    getAllDogs,
     searchDogName,
     getDogById,
     addDog

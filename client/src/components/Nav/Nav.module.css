@@ -1,0 +1,17 @@
+.header{
+    padding: 1.5rem;
+    background: #ccc;
+}
+
+.containerHeader{
+    display: flex;
+    justify-content: space-between;
+}
+
+.link{
+    color: #1f6eb3;
+    margin: 0 1rem;
+}
+.link:hover{
+    text-decoration: underline;
+}
