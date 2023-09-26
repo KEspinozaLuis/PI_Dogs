@@ -5,24 +5,27 @@ import {
     ORDER_BY_WEIGHT,
     GET_TEMPERAMENTS,
     FILTER_BY_TEMPERAMENT,
-    FILTER_DOGS,
-    CLEAN_FILTERS,
-    ADD_DOG
+    FILTER_DOGS
 } from './actionsTypes'
 
 const initialState = {
-    dogs: [],
     allDogs: [],
-    temperaments: []
+    allDogsBackup: [],
+    temperaments: [],
+    filters: [],
 }
 
 const rootReducer = (state = initialState, {type, payload}) => {
+    const filterState = state.filters.length !== 0
+    ? state.filters
+    : state.allDogsBackup
+    
     switch(type){
         case GET_DOGS:
             return {
                 ...state,
-                dogs: payload,
-                allDogs: payload
+                allDogs: payload,
+                allDogsBackup: payload
             };
         case GET_TEMPERAMENTS:
             return{
@@ -32,85 +35,78 @@ const rootReducer = (state = initialState, {type, payload}) => {
         case GET_DOG_NAME:
             return{
                 ...state,
-                dogs: payload
+                allDogs: payload
             };
-        case ADD_DOG:
-            return{
-                ...state,
-                allDogs: [...state.dogs, action.payload]
-            }
         case FILTER_DOGS:
             if(payload === 'api'){
-                const filterApi = state.allDogs.filter( dog => typeof dog.id === 'number' );
+                const filterApi = state.allDogsBackup.filter( dog => typeof dog.id === 'number' );
                 return {
                     ...state,
-                    dogs: filterApi,
+                    allDogs: filterApi,
+                    filters: filterApi
                 };
             }
             if(payload === 'bd'){
-                const filterBd = state.allDogs.filter( dog => typeof dog.id === 'string');
+                const filterBd = state.allDogsBackup.filter( dog => typeof dog.id === 'string');
                 return{
                     ...state,
-                    dogs: filterBd
+                    allDogs: filterBd,
+                    filters: filterBd
                 }
             }
             return {
                 ...state,
-                dogs: state.allDogs
+                allDogs: state.allDogsBackup,
+                filters: []
             }
         case ORDER_BY_NAME:
-            const orderName = 
-                payload === 'ascName' 
-                ? state.dogs.sort((a,b)=>{
-                        if (a.name > b.name) return 1;
-                        if (b.name > a.name) return -1;
-                        return 0;
-                    })
-                : state.dogs.sort((a,b)=>{
-                    if (a.name > b.name) return -1;
-                    if (b.name > a.name) return 1;
-                    return 0;
-                })
+            const orderName = [...state.allDogsBackup].sort((prev, next)=>{
+                if(payload === 'ascName'){
+                    if (prev.name.toLowerCase() > next.name.toLowerCase()) return 1;
+                    if (prev.name.toLowerCase() < next.name.toLowerCase()) return -1;
+                } else if(payload === 'desName'){
+                    if (prev.name.toLowerCase() > next.name.toLowerCase()) return -1;
+                    if (prev.name.toLowerCase() < next.name.toLowerCase()) return 1;
+                }
+                return 0
+            })
+            
             return {
                 ...state,
-                dogs: orderName
-            }    
+                allDogs: orderName
+            } 
+            
         case ORDER_BY_WEIGHT:
-            const orderWeight = state.dogs.sort((a,b)=>{
-                if(payload === 'desWeight') return b.maxWeight - a.maxWeight ;
-                return a.maxWeight  - b.maxWeight 
+            const orderWeight = [...state.allDogsBackup].sort((prev,next)=>{
+                if(payload === 'desWeight') return next.maxWeight - prev.maxWeight ;
+                return prev.maxWeight  - next.maxWeight 
             })
             return {
                 ...state,
-                dogs: orderWeight
+                allDogs: orderWeight
             }
         case FILTER_BY_TEMPERAMENT:
             if(payload === 'all'){
                 return {
                     ...state,
-                    dogs: state.allDogs
+                    allDogs: state.allDogsBackup
                 }
             }
-            const filterTemperaments = state.allDogs.filter((dog) => {
+            const filterTemperaments = [...filterState].filter((dog) => {
                 if(dog.temperaments) return dog.temperaments.includes(payload);
                 return false;
-              });
+            });
 
             if (filterTemperaments.length === 0) {
                 return {
                     ...state,
-                    dogs: [],
+                    allDogs: [],
                 };
             }
             return {
                 ...state,
-                dogs: filterTemperaments,
+                allDogs: filterTemperaments,
             };
-        case CLEAN_FILTERS:
-            return {
-                ...state,
-                dogs: state.allDogs
-            }
         default:
             return {...state};
     }

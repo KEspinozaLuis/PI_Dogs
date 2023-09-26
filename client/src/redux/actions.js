@@ -6,9 +6,7 @@ import {
     ORDER_BY_WEIGHT,
     GET_TEMPERAMENTS,
     FILTER_BY_TEMPERAMENT,
-    FILTER_DOGS,
-    CLEAN_FILTERS,
-    ADD_DOG
+    FILTER_DOGS
 } from './actionsTypes'
 
 const URL_BASE = 'http://localhost:3001'
@@ -23,7 +21,7 @@ export const getDogs = ()=>{
                 payload: data
             });
         } catch (error) {
-            console.log(error.message);
+            alert(error.response.data.error);
         }
     }
 }
@@ -38,7 +36,7 @@ export const getDogByName = (name)=>{
                 payload: data
             });
         } catch (error) {
-            
+            alert(error.response.data.error);
         }
     }
 }
@@ -80,7 +78,7 @@ export const getTemperaments = ()=>{
                 payload: data
             })
         } catch (error) {
-            console.log(error);
+            alert(error.response.data.error);
         }
     }
 }
@@ -94,24 +92,14 @@ export const filterByTemperament = (payload) =>{
     }
 };
 
-// Limpiar filtros
-export const cleanFilters = () => {
-    return (dispatch) =>  {
-        dispatch({ type: CLEAN_FILTERS });
-    };
-}
-
 //Crear un perro
 export const postDog = (newDog) => {
     return async (dispatch) => {
         try {
-            const {data} = await axios.post(`${URL_BASE}/dogs`, newDog);
-            return dispatch({
-                type: ADD_DOG,
-                payload: data
-            });
+            await axios.post(`${URL_BASE}/dogs`, newDog);
+            alert("The new dog was added successfully");
         } catch (error) {
-            console.log(error.message);
+            alert(error.response.data.error);
         }
     }
 }

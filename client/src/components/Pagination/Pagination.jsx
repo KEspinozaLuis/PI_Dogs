@@ -1,4 +1,5 @@
 import styles from './Pagination.module.css'
+import {BsFillArrowLeftSquareFill, BsFillArrowRightSquareFill} from "react-icons/bs";
 
 const Pagination = ({totalDogs, dogsByPage, currentPage, setCurrentPage}) =>{
     
@@ -25,7 +26,7 @@ const Pagination = ({totalDogs, dogsByPage, currentPage, setCurrentPage}) =>{
 
     return (
         <div className={styles.containerPagination}>
-            <button onClick={onPreviusPage} disabled={currentPage === 1 && 'disabled'} className={styles.btn}>Anterior</button>
+            <button onClick={onPreviusPage} disabled={currentPage === 1 && 'disabled'} className={styles.arrow}><BsFillArrowLeftSquareFill /></button>
             <ul className={styles.listPage}>
                 {pageNumbers.map(page =>(
                     <li key={page}>
@@ -35,7 +36,7 @@ const Pagination = ({totalDogs, dogsByPage, currentPage, setCurrentPage}) =>{
                 }
             </ul>
             
-            <button onClick={onNextPage} disabled={currentPage === pageNumbers.length && 'disabled'} className={styles.btn}>Siguiente</button>
+            <button onClick={onNextPage} disabled={currentPage === pageNumbers.length && 'disabled'} className={styles.arrow}><BsFillArrowRightSquareFill/></button>
         </div>
     )
 }

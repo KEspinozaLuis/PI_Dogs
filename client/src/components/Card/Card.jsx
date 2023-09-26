@@ -6,13 +6,21 @@ const Card = ({id, image, name, temperaments, minWeight, maxWeight}) =>{
     return(
         <div className={styles.cardDog}>
             <img src={image} className={styles.imgDog}/>
-            <h2 className={styles.infoDog}>Name: {name}</h2>
-            <h2 className={styles.infoDog}>Temperaments: {temperaments}</h2>
-            <h2 className={styles.infoDog}>Min Weight: {minWeight} kg</h2>
-            <h2 className={styles.infoDog}>Max Weight: {maxWeight} kg</h2>
-            <Link to={`/detail/${id}`} className={styles._nameLink}>
-                <h2 className={styles._infoMore}>More...</h2>
-            </Link>
+            <div className={styles.containerInfo}>
+                <h2 className={styles.nameDog}>{name}</h2>
+                <h2 className={styles.temperaments}>{temperaments}</h2>
+            </div>
+            <div className={styles.containerWeight}>
+                <h2 className={styles.weight}>Weight: {minWeight} - {maxWeight} kg</h2>
+            </div>
+            <div className={styles.backgroundMore}>
+                <div className={styles.contentMore}>
+                    <img src="../src/assets/huella.png" alt="huella" className={styles.huella} />
+                    <Link to={`/detail/${id}`} className={styles.more} >
+                        More
+                    </Link>
+                </div>
+            </div>
         </div>
     )
 }

@@ -9,12 +9,14 @@ function App() {
   return (
     <div className="App">
       {pathname !== '/' && <NavBar/>}
-       <Routes>
-          <Route path='/' element={<Landing />}/>
-          <Route path='/home' element={<Home />}/>
-          <Route path='/detail/:id' element={<Detail />}/>
-          <Route path='/create' element={<Form />}/>
-       </Routes>
+      <div className='containerApp'>
+        <Routes>
+            <Route path='/' element={<Landing />}/>
+            <Route path='/home' element={<Home />}/>
+            <Route path='/detail/:id' element={<Detail />}/>
+            <Route path='/create' element={<Form />}/>
+        </Routes>
+      </div>
     </div>
   );
 }

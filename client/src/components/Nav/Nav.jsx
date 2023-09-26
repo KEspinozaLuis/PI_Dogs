@@ -7,7 +7,10 @@ const NavBar = () =>{
         <>
             <header className={styles.header}>
                 <div className={`${styles.containerHeader} container`}>
-                    <div className="logo">LOGO</div>
+                    <div className={styles.logo}>
+                        <img className={styles.logoImg} src="../../src/assets/logo.png" alt="logo" />
+                        <span className={styles.logoText}>Dog Lover</span>
+                    </div>
                     <nav className={styles.nav}>
                         <Link to='/home' className={styles.link}>Home</Link>
                         <Link to='/create' className={styles.link}>Create Dog</Link>

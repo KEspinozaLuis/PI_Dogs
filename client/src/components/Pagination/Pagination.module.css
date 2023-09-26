@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    margin: 1rem 0 2rem;
+    margin: 4rem 0 1rem;
 }
 
 .listPage{
@@ -11,6 +11,16 @@
     align-items: center;
     gap: 0.5rem;
 }
+
+.arrow{
+    font-size: 2rem;
+    background-color: initial;
+    border: none;
+    color: var(--color-dark);
+    cursor: pointer;
+    margin-top: 5px;
+}
+
 .btn{
     color: #555;
     cursor: pointer;
@@ -22,12 +32,12 @@
     width: 34px;
 }
 
-.active{
-    background-color: aqua;
+.active,
+.btn:hover{
+    background-color: var(--color-dark);
+    color: #fff;
 }
 
-.btn[disabled]{
-    cursor: pointer;
-    background-color: #f2f2f2;
-    color: #ccc;
+.arrow[disabled]{
+    opacity: 0.3;
 }

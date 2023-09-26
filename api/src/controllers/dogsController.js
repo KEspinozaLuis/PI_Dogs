@@ -11,13 +11,12 @@ const getDogsApi = async()=>{
     const dogsApi = data.map(dog =>{
         let [minWeight, maxWeight] = dog.weight.metric.split("-")
         let [minHeight, maxHeight] = dog.height.metric.split("-")
-        // let temperamentArr = dog.temperament ? dog.temperament.split(', '): "";
 
         return {
             id: dog.id,
             name: dog.name,
             minHeight: Number(minHeight),
-            maxHeigh: Number(maxHeight),
+            maxHeight: Number(maxHeight),
             minWeight: Number(minWeight),
             maxWeight: Number(maxWeight),
             life_span: dog.life_span,
@@ -87,8 +86,11 @@ const getDogById = async (id)=>{
 //Crear un perro
 const addDog = async (data)=>{
     const {name, minHeight, maxHeight, minWeight, maxWeight, life_span, image, temperaments} = data;
+    const found = await Dog.findOne({ where: { name } });
     if(!name || !minHeight || !maxHeight || !minWeight || !maxWeight || !life_span || !image || !temperaments) throw new Error('Faltan datos');
     if(temperaments.length === 0) throw new Error('Agrega por lo menos 1 temperamento');
+    if (found) throw new Error("This breed already exists");
+
     const newDog ={
         name, 
         minHeight,
@@ -98,6 +100,7 @@ const addDog = async (data)=>{
         life_span, 
         image
     };
+    
     const addNewDog = await Dog.create(newDog);
     temperaments.forEach(async (temp) => {
         let temperamentsDB = await Temperament.findAll({

@@ -3,9 +3,16 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+}
+
+
+#root{
+  --primary-font: 'Ubuntu';
+  --secondary-font: 'Montserrat';
+  --primary-color: #5ed5e5;
+  --secondary-color: #ffa200;
+  --color-dark : #4a4a49;
+  --color-gray: #979797;
 }
 
 a{
@@ -23,4 +30,47 @@ h1,h2,h3,p{
 .container{
   width: 70vw;
   margin: 0 auto;
+  position: relative;
+}
+
+.containerApp{
+  padding-top: 70px;
+}
+
+input,
+select{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: var(--secondary-font);
+}
+
+.btn{
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: var(--primary-font);
+  border: none;
+}
+
+.btnPrimary{
+  padding: 0.6rem 2rem;
+  background-color: var(--secondary-color);
+  color: #fff;
+  border: 1px solid var(--secondary-color);
+}
+
+.containerBackground{
+  background-color: var(--primary-color);
+  position: relative;
+}
+
+.footprints{
+  background-image: url('../src/assets/fondo-huellas.png');
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
 }
