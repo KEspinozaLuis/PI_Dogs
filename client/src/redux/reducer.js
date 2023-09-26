@@ -5,7 +5,8 @@ import {
     ORDER_BY_WEIGHT,
     GET_TEMPERAMENTS,
     FILTER_BY_TEMPERAMENT,
-    FILTER_DOGS
+    FILTER_DOGS,
+    UPDATE_STATE_MODAL
 } from './actionsTypes'
 
 const initialState = {
@@ -13,6 +14,11 @@ const initialState = {
     allDogsBackup: [],
     temperaments: [],
     filters: [],
+    modal: {
+        show: false,
+        message: "",
+        resultado: ""
+    }
 }
 
 const rootReducer = (state = initialState, {type, payload}) => {
@@ -75,7 +81,6 @@ const rootReducer = (state = initialState, {type, payload}) => {
                 ...state,
                 allDogs: orderName
             } 
-            
         case ORDER_BY_WEIGHT:
             const orderWeight = [...state.allDogsBackup].sort((prev,next)=>{
                 if(payload === 'desWeight') return next.maxWeight - prev.maxWeight ;
@@ -107,6 +112,11 @@ const rootReducer = (state = initialState, {type, payload}) => {
                 ...state,
                 allDogs: filterTemperaments,
             };
+        case UPDATE_STATE_MODAL:
+            return{
+                ...state,
+                modal: {show: payload.show, message: payload.message, resultado: payload.resultado}
+            }
         default:
             return {...state};
     }

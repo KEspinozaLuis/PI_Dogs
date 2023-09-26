@@ -6,7 +6,8 @@ import {
     ORDER_BY_WEIGHT,
     GET_TEMPERAMENTS,
     FILTER_BY_TEMPERAMENT,
-    FILTER_DOGS
+    FILTER_DOGS,
+    UPDATE_STATE_MODAL
 } from './actionsTypes'
 
 const URL_BASE = 'http://localhost:3001'
@@ -36,7 +37,7 @@ export const getDogByName = (name)=>{
                 payload: data
             });
         } catch (error) {
-            alert(error.response.data.error);
+            dispatch(showModal(true, error.response.data.error, 'error'));
         }
     }
 }
@@ -97,9 +98,21 @@ export const postDog = (newDog) => {
     return async (dispatch) => {
         try {
             await axios.post(`${URL_BASE}/dogs`, newDog);
-            alert("The new dog was added successfully");
+            dispatch(showModal(true, "The new dog was added successfully", 'exito'));
         } catch (error) {
-            alert(error.response.data.error);
+            dispatch(showModal(true, error.response.data.error, 'error'));
+        }
+    }
+}
+
+//Modal
+export const showModal = (show, message, resultado) =>{
+    return{
+        type: UPDATE_STATE_MODAL,
+        payload: { 
+            show, 
+            message,
+            resultado
         }
     }
 }

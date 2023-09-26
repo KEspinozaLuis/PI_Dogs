@@ -67,7 +67,7 @@ const getAllDogs = async()=>{
 const searchDogName = async (name)=>{
     const allDogs = await getAllDogs();
     const searchDog = allDogs.filter(dog => dog.name.toLowerCase().includes(name.toLowerCase()));
-    if(searchDog.length === 0) throw new Error('No existe el perro');
+    if(searchDog.length === 0) throw new Error('There is not dog');
     return searchDog;
 }
 
