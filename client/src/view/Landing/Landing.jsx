@@ -6,7 +6,7 @@ const Landing = () => {
   return (
     <section className={`${styles.containerLanding} containerBackground`}>
       <div className="footprints"></div>
-      <div className={styles.containernfo}>
+      <div className={styles.containerInfo}>
         <img src="../../src/assets/perrito-landing.png" alt="dog"  className={styles.imgDog}/>
         <div className={styles.contentInfo}>
           <h1 className={styles.title}>Welcome PI Dogs </h1>

@@ -1,35 +1,36 @@
+/*MOBILE <768*/
 .containerLanding{
     min-height: 100vh; 
-    margin-top: -70px;
 }
 
-.containernfo{
+.containerInfo{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 6rem;
+    flex-direction: column;
     min-height: 100vh;
     position: relative;
 }
+
 .imgDog{
-    max-width: 28rem;
-    margin-top: 1rem;
+    max-width: 8rem;
 }
 
 .contentInfo{
-    max-width: 600px;
     color: #fff;
+    text-align: center;
 }
+
 .title{
     font-family: var(--primary-font);
-    font-size: 4rem;
+    font-size: 2rem;
     margin-bottom: 2rem;
 }
+
 .text{
     font-family: var(--secondary-font);
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding-left: 1.5rem;
-    border-left: 2px solid #fff;
 }
 
 .btnStart{
@@ -45,13 +46,9 @@
     transition: .2s all;
 }
 
-.btnStart:hover{
-    background-color: #fff;
-    color: var(--secondary-color);
-}
-
 .contactInfo{
     display: flex;
+    justify-content: center;
     align-items: center;
     color: #fff;
     margin-top: 1rem;
@@ -70,6 +67,53 @@
     display: inline-block;
     cursor: pointer;
 }
-.contact:hover{
-    color: #000;
+
+
+/*TABLET min-width: 768*/
+/*DESKTOP min-width: 992*/
+@media (min-width: 992px){
+    .containerLanding{
+        margin-top: -70px;
+    }
+    .containerInfo{
+        flex-direction: row;
+        gap: 6rem;
+    }
+    .imgDog{
+        max-width: 22rem;
+        margin-top: 1rem;
+    }
+    .contentInfo{
+        max-width: 600px;
+        text-align: initial;
+    }
+
+    .title{
+        font-size: 4rem;
+    }
+
+    .text{
+        font-size: 1.2rem;
+        border-left: 2px solid #fff;
+    }
+
+    .btnStart:hover{
+        background-color: #fff;
+        color: var(--secondary-color);
+    }
+
+    .contactInfo{
+        justify-content: start;
+    }
+
+    .contact:hover{
+        color: #000;
+    }
+}
+
+/*LARGE DESKTOP min-width: 1200*/
+@media (min-width: 1200px) {
+    .imgDog{
+        max-width: 28rem;
+    }
 }

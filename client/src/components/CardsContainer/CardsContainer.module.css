@@ -1,7 +1,6 @@
-
+/*MOBILE <768*/
 .cardDog{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
     gap: 1.8rem;
 }
 
@@ -28,7 +27,15 @@
     font-weight: 700;
     color: var(--color-dark);
 }
+/*DESKTOP min-width: 992*/
+@media (min-width: 992px){
+    .cardDog{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
 
+
+/*Animaciones */
 @keyframes cardZoom {
     0%{
         transform: scale(0);

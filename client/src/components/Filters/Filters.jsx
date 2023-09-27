@@ -10,7 +10,9 @@ import './Filters.module.css'
 const Filters = () =>{
     const dispatch = useDispatch();
     const allTemperaments = useSelector(state => state.temperaments);
-
+    
+    //Para mostrar el contenido empty
+    const allDogs = useSelector(state => state.allDogs);
     
     //Ordenar por nombre
     const handleOrderName = (event)=>{

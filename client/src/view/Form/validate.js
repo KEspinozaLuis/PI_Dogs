@@ -14,7 +14,7 @@ const validation = (form , property, setErrors, errors) => {
 
     if(property === 'minHeight' || property ==='maxHeight'){
         if(form.minHeight === '' || form.maxHeight === '') setErrors({...errors, height:'Height is required'});
-        else if(parseInt(form.minHeight) > 100 || parseInt(form.maxHeight) > 100) setErrors({...errors, height:'The height must be less than 30'});
+        else if(parseInt(form.minHeight) > 100 || parseInt(form.maxHeight) > 100) setErrors({...errors, height:'The height must be less than 100'});
         else if(!regexNumbers.test(form.minHeight || form.maxHeight)) setErrors({...errors, height:'Enter only Numbers'});
         else if (parseInt(form.maxHeight) <= parseInt(form.minHeight)) setErrors({...errors, height:'Max-Height must be highter than min-Height'});
         else setErrors({...errors, height: ""})
@@ -23,7 +23,7 @@ const validation = (form , property, setErrors, errors) => {
 
     if(property === 'minWeight' || property ==='maxWeight'){
         if(form.minWeight === '' || form.maxWeight === '') setErrors({...errors, weight:'Weight is required'});
-        else if(parseInt(form.minWeight) > 100 || parseInt(form.maxWeight) > 100) setErrors({...errors, weight:'The weight must be less than 30'});
+        else if(parseInt(form.minWeight) > 100 || parseInt(form.maxWeight) > 100) setErrors({...errors, weight:'The weight must be less than 100'});
         else if(!regexNumbers.test(form.minWeight || form.maxWeight)) setErrors({...errors, weight:'Enter only Numbers'});
         else if (parseInt(form.maxWeight) <= parseInt(form.minWeight)) setErrors({...errors, weight:'Max-Weight must be highter than min-Weight'});
         else setErrors({...errors, weight: ""})

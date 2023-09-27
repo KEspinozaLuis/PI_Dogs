@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {getDogByName, showModal} from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux';
+import styles from './SearchBar.module.css'
 
 const SearchBar = () =>{
     const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const SearchBar = () =>{
     }
     
     return (
-        <div>
+        <div className={styles.containerSearch}>
             <input type="search" value={nameDog} onChange={handleInput} placeholder="Enter a name" />
             <button onClick={handleSearch} className='btnPrimary btn'>Search</button>
         </div>
