@@ -6,7 +6,8 @@ import {
     GET_TEMPERAMENTS,
     FILTER_BY_TEMPERAMENT,
     FILTER_DOGS,
-    UPDATE_STATE_MODAL
+    UPDATE_STATE_MODAL,
+    CLEAR_FILTERS
 } from './actionsTypes'
 
 const initialState = {
@@ -66,7 +67,7 @@ const rootReducer = (state = initialState, {type, payload}) => {
                 filters: []
             }
         case ORDER_BY_NAME:
-            const orderName = [...state.allDogsBackup].sort((prev, next)=>{
+            const orderName = [...filterState].sort((prev, next)=>{
                 if(payload === 'ascName'){
                     if (prev.name.toLowerCase() > next.name.toLowerCase()) return 1;
                     if (prev.name.toLowerCase() < next.name.toLowerCase()) return -1;
@@ -82,7 +83,7 @@ const rootReducer = (state = initialState, {type, payload}) => {
                 allDogs: orderName
             } 
         case ORDER_BY_WEIGHT:
-            const orderWeight = [...state.allDogsBackup].sort((prev,next)=>{
+            const orderWeight = [...filterState].sort((prev,next)=>{
                 if(payload === 'desWeight') return next.maxWeight - prev.maxWeight ;
                 return prev.maxWeight  - next.maxWeight 
             })
@@ -105,17 +106,24 @@ const rootReducer = (state = initialState, {type, payload}) => {
             if (filterTemperaments.length === 0) {
                 return {
                     ...state,
-                    allDogs: [],
+                    allDogs: []
                 };
             }
             return {
                 ...state,
                 allDogs: filterTemperaments,
+                filters: filterTemperaments
             };
         case UPDATE_STATE_MODAL:
             return{
                 ...state,
                 modal: {show: payload.show, message: payload.message, resultado: payload.resultado}
+            }
+        case CLEAR_FILTERS:
+            return{
+                ...state,
+                allDogs: state.allDogsBackup,
+                filters: []
             }
         default:
             return {...state};

@@ -7,7 +7,8 @@ import {
     GET_TEMPERAMENTS,
     FILTER_BY_TEMPERAMENT,
     FILTER_DOGS,
-    UPDATE_STATE_MODAL
+    UPDATE_STATE_MODAL,
+    CLEAR_FILTERS
 } from './actionsTypes'
 
 const URL_BASE = 'http://localhost:3001'
@@ -114,5 +115,12 @@ export const showModal = (show, message, resultado) =>{
             message,
             resultado
         }
+    }
+}
+
+//Reset filter
+export const clearFilters = () =>{
+    return {
+        type: CLEAR_FILTERS,
     }
 }
