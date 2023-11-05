@@ -37,7 +37,8 @@ const getDogsBd = async ()=>{
             through: {
                 attributes: []
             }
-        }
+        },
+        order: [['createdAt', 'DESC']]
     });
 
     const dogsBdFormat = dogsBD.map(dog =>{
@@ -55,6 +56,7 @@ const getDogsBd = async ()=>{
     })
     return dogsBdFormat;
 }
+
 
 //Unimos todos los perros de la Api y BD
 const getAllDogs = async()=>{

@@ -8,7 +8,7 @@ import {
 import styles from './Filters.module.css'
 import './Filters.module.css'
 
-const Filters = () =>{
+const Filters = ({setCurrentPage}) =>{
     const dispatch = useDispatch();
     const allTemperaments = useSelector(state => state.temperaments);
     
@@ -27,11 +27,13 @@ const Filters = () =>{
 
     //Filtrar perros de Api, Bd ó todos
     const handleFilterDogs = (event) => {
+        setCurrentPage(1);
         dispatch(filterDogs(event.target.id));
     }
     
     //Filtrar por temperamentos
     const handleFilterTemperaments = (event)=>{
+        setCurrentPage(1);
         dispatch(filterByTemperament(event.target.value))
     }
 
@@ -69,7 +71,7 @@ const Filters = () =>{
                     </select>
                 </div>
             </div>
-            <div className={styles.contentFilters}>
+            <div className={`${styles.contentFilters} ${styles.filters}`}>
                 <h3 className={styles.titleFilter}>FILTERS</h3>
                 <div className={styles.buttonFilters}>
                     <button onClick={handleFilterDogs} id='all' className={`${styles.btnFilter} btn`}>ALL</button>

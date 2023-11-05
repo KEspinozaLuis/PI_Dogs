@@ -3,6 +3,7 @@ const validation = (form , property, setErrors, errors) => {
     //Expresiones regulares
     const regexLetters=/^[a-zA-Z ]+$/;
     const regexNumbers = /^[0-9]+$/;
+    const regexUrl = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
 
     //Validaciones de los input
     if(property === 'name'){
@@ -38,6 +39,7 @@ const validation = (form , property, setErrors, errors) => {
     
     if(property === 'image'){
         if(form.image === '') setErrors({...errors, image:'Image is required'});
+        if(!regexUrl.test(form.image)) setErrors({...errors, image: 'URL invalid'});
         else setErrors({...errors, image : ""})
     }
    

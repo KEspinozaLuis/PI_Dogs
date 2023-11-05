@@ -78,6 +78,7 @@ const Form = () => {
 
   // Botón Create
   const handleSubmit = (event) => {
+    const temperaments = document.getElementById('temperaments');
     event.preventDefault();
     dispatch(postDog(form));
     setForm({
@@ -90,6 +91,7 @@ const Form = () => {
         image: "",
         temperaments: [],
     })
+    temperaments.value = 'temperaments';
   };
 
   return (
@@ -161,6 +163,7 @@ const Form = () => {
             </div>
             <div className={styles.contentForm}>
               <select
+                id="temperaments"
                 name="temperaments"
                 defaultValue="temperaments"
                 onChange={handleChange}
