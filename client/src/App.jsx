@@ -1,7 +1,7 @@
 import { Landing, Home, Detail, Form } from './view';
 import { Routes, Route, useLocation} from 'react-router-dom';
 import NavBar from './components/Nav/Nav';
-import './app.css';
+import './App.css';
 import { useSelector } from 'react-redux';
 import Modal from './components/Modal/Modal'
 
