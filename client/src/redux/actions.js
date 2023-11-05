@@ -11,7 +11,7 @@ import {
     CLEAR_FILTERS
 } from './actionsTypes'
 
-const URL_BASE = 'http://localhost:3001'
+const URL_BASE = import.meta.env.VITE_BASE_URL;
 
 //Listar todos los perros
 export const getDogs = ()=>{

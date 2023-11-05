@@ -9,10 +9,10 @@ const Detail = ()=>{
     const {id} = useParams();
     const [dog, setDog] = useState({});
     const [loading, setLoading] = useState(true);
-    const URL_BASE = 'http://localhost:3001/dogs/'
+    const URL_BASE = import.meta.env.VITE_BASE_URL;
 
     useEffect(()=>{
-        axios(`${URL_BASE}${id}`)
+        axios(`${URL_BASE}/dogs/${id}`)
         .then(({data})=>{
             if(data.name){
                 setDog(data);
