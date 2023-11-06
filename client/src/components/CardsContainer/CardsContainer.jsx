@@ -54,8 +54,6 @@ const CardsContainer = ({allDogs})=>{
             <Pagination 
             totalDogs={totalDogs}
             dogsByPage ={dogsByPage}
-            currentPage ={currentPage}
-            setCurrentPage={setCurrentPage}
             onPage={onPage}
             />
         </>
