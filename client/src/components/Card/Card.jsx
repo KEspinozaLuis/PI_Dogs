@@ -15,7 +15,7 @@ const Card = ({id, image, name, temperaments, minWeight, maxWeight}) =>{
             </div>
             <div className={styles.backgroundMore}>
                 <div className={styles.contentMore}>
-                    <img src="../src/assets/huella.png" alt="huella" className={styles.huella} />
+                    <img src="/huella.png" alt="huella" className={styles.huella} />
                     <Link to={`/detail/${id}`} className={styles.more} >
                         More
                     </Link>

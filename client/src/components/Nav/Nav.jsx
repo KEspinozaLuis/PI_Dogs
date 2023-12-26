@@ -9,7 +9,7 @@ const NavBar = () =>{
                 <div className={`${styles.containerHeader} container`}>
                     <Link to='/'>
                         <div className={styles.logo}>
-                            <img className={styles.logoImg} src="../../src/assets/logo.png" alt="logo" />
+                            <img className={styles.logoImg} src="./logo.png" alt="logo" />
                             <span className={styles.logoText}>Dog Lover</span>
                         </div>
                     </Link>

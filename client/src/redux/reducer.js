@@ -111,8 +111,7 @@ const rootReducer = (state = initialState, {type, payload}) => {
             }
             return {
                 ...state,
-                allDogs: filterTemperaments,
-                filters: filterTemperaments
+                allDogs: filterTemperaments
             };
         case UPDATE_STATE_MODAL:
             return{

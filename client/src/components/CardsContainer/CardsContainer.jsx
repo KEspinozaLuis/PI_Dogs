@@ -46,7 +46,7 @@ const CardsContainer = ({allDogs})=>{
                 {
                     allDogs.length === 0 && 
                         <div className={styles.containerEmpty}>
-                            <img src="../../src/assets/dog-empty.png" alt="" />
+                            <img src="/dog-empty.png" alt="" />
                             <p>¡I'm sorry!<br/> There are no dogs...</p>
                         </div>
                 }

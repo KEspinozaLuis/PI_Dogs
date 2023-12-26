@@ -14,11 +14,13 @@
 
 .imgDog{
     max-width: 8rem;
+    animation: leftHorizontal 1s ;
 }
 
 .contentInfo{
     color: #fff;
     text-align: center;
+    animation: rightHorizontal 1s;
 }
 
 .title{
@@ -115,5 +117,23 @@
 @media (min-width: 1200px) {
     .imgDog{
         max-width: 28rem;
+    }
+}
+
+@keyframes leftHorizontal {
+    0%{
+        transform: translateX(-5rem);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+@keyframes rightHorizontal {
+    0%{
+        transform: translateX(5rem);
+    }
+    100%{
+        transform: translateX(0);
     }
 }
