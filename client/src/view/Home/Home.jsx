@@ -18,8 +18,8 @@ const Home = ()=>{
         setLoading(false)
       }, 1000);
       
+      dispatch(getDogs());
       if(allDogs.length === 0){
-        dispatch(getDogs());
         window.localStorage.setItem('currentPage', 1);
         dispatch(getTemperaments());
       }
