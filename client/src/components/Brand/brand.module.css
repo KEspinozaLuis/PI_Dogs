@@ -1,0 +1,28 @@
+.brand {
+    position: absolute;
+    bottom: 1rem;
+    font-size: 0.85rem;
+    z-index: 100;
+    font-family: var(--secondary-font);
+}
+.social{
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    align-items: center;
+    margin: 0.5rem;
+}
+.social a{
+    color: var(--color-black);
+}
+.name{
+    transform: rotate(-90deg);
+}
+
+.line{
+    display: inline-block;
+    width: 1px;
+    height: 4rem;
+    background-color: var(--color-black);
+    margin: 0.5rem 0 0 0.9rem;
+}

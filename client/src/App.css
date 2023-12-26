@@ -13,8 +13,11 @@
   --secondary-color: #ffa200;
   --color-dark : #4a4a49;
   --color-gray: #979797;
+  --color-black: #000000;
 }
-
+body{
+  position: relative;
+}
 a{
   text-decoration: none;
 }

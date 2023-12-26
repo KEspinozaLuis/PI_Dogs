@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "./Landing.module.css";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
+import Brand from "../../components/Brand/Brand";
 
 const Landing = () => {
   return (
+    <>
+    <Brand />
     <section className={`${styles.containerLanding} containerBackground`}>
       <div className="footprints"></div>
       <div className={styles.containerInfo}>
@@ -37,6 +40,8 @@ const Landing = () => {
         </div>
       </div>
     </section>
+    </>
+    
   );
 };
 
